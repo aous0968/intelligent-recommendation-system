@@ -17,70 +17,70 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
 
-        # users = pd.read_excel(users_file)
+        users = pd.read_excel(users_file)
 
-        # for _, row in users.iterrows():
+        for _, row in users.iterrows():
 
-        #     User.objects.get_or_create(
-        #         user_id=row['user_id'],
-        #         defaults={
-        #             'age': row['age'],
-        #             'country': row['country']
-        #         }
-        #     )
-
-        # self.stdout.write(self.style.SUCCESS('Users imported'))
-
-
-        for _, row in products.iterrows():
-
-            Product.objects.get_or_create(
-                product_id=row['product_id'],
+            User.objects.get_or_create(
+                user_id=row['user_id'],
                 defaults={
-                    'category': row['category'],
-                    'price': row['price']
+                    'age': row['age'],
+                    'country': row['country']
                 }
             )
 
-        self.stdout.write(self.style.SUCCESS('Products imported'))
+        self.stdout.write(self.style.SUCCESS('Users imported'))
 
-        for _, row in ratings.iterrows():
 
-            try:
-                user = User.objects.get(user_id=row['user_id'])
-                product = Product.objects.get(product_id=row['product_id'])
+        # for _, row in products.iterrows():
 
-                Rating.objects.get_or_create(
-                    user=user,
-                    product=product,
-                    defaults={
-                        'rating': row['rating']
-                    }
-                )
+        #     Product.objects.get_or_create(
+        #         product_id=row['product_id'],
+        #         defaults={
+        #             'category': row['category'],
+        #             'price': row['price']
+        #         }
+        #     )
 
-            except:
-                pass
+        # self.stdout.write(self.style.SUCCESS('Products imported'))
 
-        self.stdout.write(self.style.SUCCESS('Ratings imported'))
+        # for _, row in ratings.iterrows():
 
-        for _, row in behaviors.iterrows():
+        #     try:
+        #         user = User.objects.get(user_id=row['user_id'])
+        #         product = Product.objects.get(product_id=row['product_id'])
 
-            try:
+        #         Rating.objects.get_or_create(
+        #             user=user,
+        #             product=product,
+        #             defaults={
+        #                 'rating': row['rating']
+        #             }
+        #         )
 
-                user = User.objects.get(user_id=row['user_id'])
-                product = Product.objects.get(product_id=row['product_id'])
+        #     except:
+        #         pass
 
-                Behavior.objects.get_or_create(
-                    user=user,
-                    product=product,
-                    defaults={
-                        'viewed': row['viewed'],
-                        'clicked': row['clicked'],
-                        'purchased': row['purchased']
-                    }
-                )
+        # self.stdout.write(self.style.SUCCESS('Ratings imported'))
 
-            except:
-                pass
+        # for _, row in behaviors.iterrows():
 
-        self.stdout.write(self.style.SUCCESS('Behavior imported'))
+        #     try:
+
+        #         user = User.objects.get(user_id=row['user_id'])
+        #         product = Product.objects.get(product_id=row['product_id'])
+
+        #         Behavior.objects.get_or_create(
+        #             user=user,
+        #             product=product,
+        #             defaults={
+        #                 'viewed': row['viewed'],
+        #                 'clicked': row['clicked'],
+        #                 'purchased': row['purchased']
+        #             }
+        #         )
+
+        #     except:
+        #         pass
+
+        # self.stdout.write(self.style.SUCCESS('Behavior imported'))
