@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Recommendation System</title>
+    {% load static %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'recommender/style.css' %}?v=1">
+</head>
+
+<body class="roboto-condensed-500">
+    <div class="section roboto-condensed-900">
+        <h1>Intelligent Recommendation System</h1>
+    </div>
+
+    <p style="padding: 5px;">
+        Dataset contains <b>{{ total_users }}</b> users (1000 users in full dataset). If you want to see a the full list of users and test for recommendation , you can go from here 
+    </p>
+    <div class="all-users">
+        <button class="all-users-btn">    
+            <a href="/users/" style="color: white !important;">
+                View All Users (1000)
+            </a>
+        </button>
+    </div>
+
+    <hr style="color: #020202;">
+
+    <h3 style="padding: 10px;">Sample Users (for quick demo)</h3>
+    <div class="container">
+
+        {% for user in sample_users %}
+        <div class="card">
+            <div>
+                <b>User ID :</b> {{ user.user_id }}
+            </div>
+            <div><b>Age:</b>{{ user.age }}</div>
+            <div><b>Country :</b>{{ user.country }}</div>
+            <div>
+                <a href="/recommend/{{ user.user_id }}/">
+                    <button>Recommend</button>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <br>
+    
+
+</body>
+
+</html>

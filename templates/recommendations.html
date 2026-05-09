@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Recommendations Dashboard</title>
+    {% load static %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'recommender/style.css' %}">
+</head>
+
+<body>
+    <div class="section roboto-condensed-900">
+        <h1>🧠 Intelligent Recommendation System</h1>
+    </div>
+
+    <hr>
+
+    <!-- USER PROFILE -->
+    <h2>👤 User Profile</h2>
+
+
+    <div class="card" style="width: 94%;">
+        <p>User ID: {{ user.user_id }}</p>
+        <p>Age: {{ user.age }}</p>
+        <p>Country: {{ user.country }}</p>
+    </div>
+
+    <hr>
+
+    <!-- USER BEHAVIOR -->
+    <h2>📊 User Behavior Data</h2>
+
+    <p><b>Interactions:</b></p>
+
+    <ul>
+        {% for b in behaviors %}
+        <li class="li-container">
+            <div class="li-item">
+                <b>Product</b> {{ b.product.product_id }} :
+            </div>
+            <div class="li-item">
+                <b style="color: yellow;">Viewed:</b>
+                <span style="color:{% if b.viewed %} green {% else %} red {% endif %}"> {{ b.viewed }} </span> |
+            </div>
+            <div class="li-item">
+                <b style="color: yellow;">Clicked:</b>
+                <span style="color:{% if b.clicked %} green {% else %} red {% endif %}"> {{ b.clicked }} </span> |
+            </div>
+            </div>
+            <div class="li-item">
+                <b style="color: yellow;">Purchased:</b>
+                <span style="color:{% if b.purchased %} green {% else %} red {% endif %}"> {{ b.purchased }} </span>
+            </div>
+        </li>
+        {% empty %}
+        <li>No behavior data available</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <!-- RATINGS -->
+    <h2>⭐ User Ratings</h2>
+
+    <ul>
+        {% for r in ratings %}
+        <li>
+            Product {{ r.product.product_id }} → <span style="color: yellow;"> Rating: {{ r.rating }} </span>
+        </li>
+        {% empty %}
+        <li>No ratings available</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <!-- AI EXPLANATION -->
+    <h2>🤖 Algorithm Explanation</h2>
+
+    <p>
+        This system uses an <b>Intelligent Evolutionary Recommendation Algorithm</b>:
+    </p>
+
+    <ul>
+        <li>Step 1: Generate random recommendation sets</li>
+        <li>Step 2: Evaluate using user behavior</li>
+        <li>Step 3: Select best performing solutions</li>
+        <li>Step 4: Apply crossover and mutation</li>
+        <li>Step 5: Repeat until optimal solution is found</li>
+    </ul>
+
+    <hr>
+
+    <!-- RECOMMENDATIONS -->
+    <h2>🎯 Recommended Products</h2>
+
+    <ol>
+        {% for p in products %}
+        <li>
+            <b>Product ID:</b> {{ p.id }} <br>
+            <b>Category:</b> {{ p.category }} <br>
+            <b>Price:</b> ${{ p.price }} <br>
+
+            <!-- simple “AI reason” -->
+            <i>
+                Selected based on user interactions, ratings, and evolutionary optimization score.
+            </i>
+        </li>
+        <br>
+        {% endfor %}
+    </ol>
+
+    <hr>
+    <div class="all-users" style="margin: 10px; padding: 10px; margin-top: 0; padding-top: 0;" >
+        <button class="all-users-btn">
+            <a href="/" style="color: white;">⬅ Back Home</a>
+        </button>
+    </div>
+
+</body>
+
+</html>
