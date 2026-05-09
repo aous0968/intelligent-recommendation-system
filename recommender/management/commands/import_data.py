@@ -32,55 +32,55 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('Users imported'))
 
 
-        # for _, row in products.iterrows():
+        for _, row in products.iterrows():
 
-        #     Product.objects.get_or_create(
-        #         product_id=row['product_id'],
-        #         defaults={
-        #             'category': row['category'],
-        #             'price': row['price']
-        #         }
-        #     )
+            Product.objects.get_or_create(
+                product_id=row['product_id'],
+                defaults={
+                    'category': row['category'],
+                    'price': row['price']
+                }
+            )
 
-        # self.stdout.write(self.style.SUCCESS('Products imported'))
+        self.stdout.write(self.style.SUCCESS('Products imported'))
 
-        # for _, row in ratings.iterrows():
+        for _, row in ratings.iterrows():
 
-        #     try:
-        #         user = User.objects.get(user_id=row['user_id'])
-        #         product = Product.objects.get(product_id=row['product_id'])
+            try:
+                user = User.objects.get(user_id=row['user_id'])
+                product = Product.objects.get(product_id=row['product_id'])
 
-        #         Rating.objects.get_or_create(
-        #             user=user,
-        #             product=product,
-        #             defaults={
-        #                 'rating': row['rating']
-        #             }
-        #         )
+                Rating.objects.get_or_create(
+                    user=user,
+                    product=product,
+                    defaults={
+                        'rating': row['rating']
+                    }
+                )
 
-        #     except:
-        #         pass
+            except:
+                pass
 
-        # self.stdout.write(self.style.SUCCESS('Ratings imported'))
+        self.stdout.write(self.style.SUCCESS('Ratings imported'))
 
-        # for _, row in behaviors.iterrows():
+        for _, row in behaviors.iterrows():
 
-        #     try:
+            try:
 
-        #         user = User.objects.get(user_id=row['user_id'])
-        #         product = Product.objects.get(product_id=row['product_id'])
+                user = User.objects.get(user_id=row['user_id'])
+                product = Product.objects.get(product_id=row['product_id'])
 
-        #         Behavior.objects.get_or_create(
-        #             user=user,
-        #             product=product,
-        #             defaults={
-        #                 'viewed': row['viewed'],
-        #                 'clicked': row['clicked'],
-        #                 'purchased': row['purchased']
-        #             }
-        #         )
+                Behavior.objects.get_or_create(
+                    user=user,
+                    product=product,
+                    defaults={
+                        'viewed': row['viewed'],
+                        'clicked': row['clicked'],
+                        'purchased': row['purchased']
+                    }
+                )
 
-        #     except:
-        #         pass
+            except:
+                pass
 
-        # self.stdout.write(self.style.SUCCESS('Behavior imported'))
+        self.stdout.write(self.style.SUCCESS('Behavior imported'))
