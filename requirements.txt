@@ -1,7 +1,6 @@
 Django
 pandas
 openpyxl
-mysqlclient
 gunicorn
 whitenoise
 dj-database-url
